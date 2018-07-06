@@ -87,40 +87,7 @@ table(testData$churn ,ran_pred) # confusion matrix
 #most commonly mean decrease gini is considered
 importance(random_model)
 
+# Variables that result in nodes with higher purity have a higher decrease in Gini coefficient.
 varImpPlot(random_model)
+#total day charges have higher decrease in gini index so its more significant than other
 
-
-
-library(dplyr)
-
-mtcars<- mtcars
-
-head(mtcars)
-
-tail(mtcars)
-
-str(mtcars)
-
-summary(mtcars)
-
-names(mtcars)
-
-dim(mtcars)
-
-#convert into categorical data (i.e factor type for indep variable)
-#indep var must be categorical for anova
-mtcars$gear<- as.factor(mtcars$gear)
-str(mtcars)
-
-
-mtcars1<- aov(mtcars$mpg ~ as.factor(mtcars$gear))
-summary(mtcars1)
-
-boxplot(mtcars$mpg ~ factor(mtcars$gear),xlab ="gear", ylab ="mpg")
-
-#TukeyHSD test : TukeyHONESTSIGNIFICANT TEST WILL TELL WHICH ONE IS DIFFERENT and WHICH ONE IS SAME
-
-mtcars2<- TukeyHSD(mtcars1)
-mtcars2 
-# this summary will tell which group is statistically different and same
-#the columns with p values less than 0.05 are different 
